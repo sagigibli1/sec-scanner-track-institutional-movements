@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussion
+    url: https://github.com/peleg-jpg/sec-scanner/discussions
+    about: Questions, ideas, show-and-tell
+  - name: Disclaimer
+    url: https://github.com/peleg-jpg/sec-scanner#disclaimer--אזהרה-משפטית
+    about: This is NOT investment advice. Public-data aggregator only.

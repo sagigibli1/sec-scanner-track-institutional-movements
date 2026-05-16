@@ -1,0 +1,66 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  syntax:
+    name: syntax + JSON validity + mock renders
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install renderer deps
+        run: |
+          pip install -r outputs/excel/requirements.txt
+          pip install -r outputs/newsletter/requirements.txt
+          pip install -r outputs/screener/requirements.txt
+
+      - name: Bash syntax check
+        run: |
+          for f in install/*.sh scripts/*.sh; do
+            bash -n "$f" && echo "ok: $f"
+          done
+
+      - name: Python AST parse
+        run: |
+          for f in $(find outputs scripts -name '*.py'); do
+            python3 -c "import ast; ast.parse(open('$f').read()); print('ok:', '$f')"
+          done
+
+      - name: JSON validity (mock fixtures + watchlist)
+        run: |
+          for f in data/watchlist.json $(find data/snapshots -name '*.json'); do
+            python3 -c "import json; json.load(open('$f')); print('ok:', '$f')"
+          done
+
+      - name: No em/en dashes (style rule)
+        run: |
+          if grep -RIPnl '[\x{2013}\x{2014}]' --include='*.md' --include='*.sh' --include='*.py' --include='*.json' --include='*.html' --include='*.css' --include='*.j2' .; then
+            echo "::error::em/en dash found, replace with plain hyphen"
+            exit 1
+          fi
+
+      - name: Dashboard render against mock fixtures
+        run: |
+          python3 outputs/dashboard/render.py
+
+      - name: Excel render against mock fixtures
+        run: |
+          python3 outputs/excel/generate.py
+
+      - name: Newsletter render against mock fixtures
+        run: |
+          python3 outputs/newsletter/render.py
+
+      - name: Screener render against mock fixtures
+        run: |
+          python3 outputs/screener/daily.py --no-color

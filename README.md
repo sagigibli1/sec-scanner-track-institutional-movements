@@ -4,7 +4,9 @@
 >
 > מערכת מעקב אחרי קרנות גדולות, מנהלי השקעות בכירים, ופעולות פנים בחברות ציבוריות בארה"ב - ישירות מתוך דיווחי SEC. רץ מקומית בתוך Claude Code. דשבורד בעברית, פלטי Excel + PDF + ניוזלטר. מבוסס על שכבת המידע החינמית של המקורות.
 
-![status: alpha](https://img.shields.io/badge/status-alpha-orange) ![license: MIT](https://img.shields.io/badge/license-MIT-blue) ![python: 3.11+](https://img.shields.io/badge/python-3.11+-blue)
+![status: alpha](https://img.shields.io/badge/status-alpha-orange) ![license: MIT](https://img.shields.io/badge/license-MIT-blue) ![python: 3.11+](https://img.shields.io/badge/python-3.11+-blue) [![verify](https://github.com/peleg-jpg/sec-scanner/actions/workflows/verify.yml/badge.svg)](https://github.com/peleg-jpg/sec-scanner/actions/workflows/verify.yml)
+
+![SEC Scanner dashboard](docs/dashboard-dark.png)
 
 ---
 
