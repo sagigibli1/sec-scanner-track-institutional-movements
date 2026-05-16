@@ -3,9 +3,108 @@
   "guru_display": "Bill Ackman / Pershing",
   "quarter": "2026Q1",
   "filing_date": "2026-05-15",
-  "source": "sec_edgar_metadata",
-  "total_value_usd": 0,
-  "positions": [],
-  "_note": "metadata only - full positions need XML parse (out of scope for live-pull demo)",
+  "source": "sec_edgar_13f_xml",
+  "total_value_usd": 13714299861,
+  "positions": [
+    {
+      "ticker": "BN",
+      "company": "BROOKFIELD CORP",
+      "cusip": "11271J107",
+      "shares": 59697208,
+      "value_usd": 2415946008,
+      "pct_of_portfolio": 17.62,
+      "change_pct": null
+    },
+    {
+      "ticker": "AMZN",
+      "company": "AMAZON COM INC",
+      "cusip": "023135106",
+      "shares": 11451981,
+      "value_usd": 2385104083,
+      "pct_of_portfolio": 17.39,
+      "change_pct": null
+    },
+    {
+      "ticker": "UBER",
+      "company": "UBER TECHNOLOGIES INC",
+      "cusip": "90353T100",
+      "shares": 29958771,
+      "value_usd": 2154934398,
+      "pct_of_portfolio": 15.71,
+      "change_pct": null
+    },
+    {
+      "ticker": "MSFT",
+      "company": "MICROSOFT CORP",
+      "cusip": "594918104",
+      "shares": 5654078,
+      "value_usd": 2092970053,
+      "pct_of_portfolio": 15.26,
+      "change_pct": null
+    },
+    {
+      "ticker": "QSR",
+      "company": "RESTAURANT BRANDS INTL INC",
+      "cusip": "76131D103",
+      "shares": 22645483,
+      "value_usd": 1673501194,
+      "pct_of_portfolio": 12.2,
+      "change_pct": null
+    },
+    {
+      "ticker": "META",
+      "company": "META PLATFORMS INC",
+      "cusip": "30303M102",
+      "shares": 2660861,
+      "value_usd": 1522358404,
+      "pct_of_portfolio": 11.1,
+      "change_pct": null
+    },
+    {
+      "ticker": "HHH",
+      "company": "HOWARD HUGHES HOLDINGS INC",
+      "cusip": "44267T102",
+      "shares": 18852064,
+      "value_usd": 1192581569,
+      "pct_of_portfolio": 8.7,
+      "change_pct": null
+    },
+    {
+      "ticker": "SEG",
+      "company": "SEAPORT ENTMT GROUP INC",
+      "cusip": "812215200",
+      "shares": 5023780,
+      "value_usd": 107910794,
+      "pct_of_portfolio": 0.79,
+      "change_pct": null
+    },
+    {
+      "ticker": "GOOG",
+      "company": "ALPHABET INC",
+      "cusip": "02079K107",
+      "shares": 311726,
+      "value_usd": 89421720,
+      "pct_of_portfolio": 0.65,
+      "change_pct": null
+    },
+    {
+      "ticker": "HTZ",
+      "company": "HERTZ GLOBAL HLDGS INC",
+      "cusip": "42806J700",
+      "shares": 15241127,
+      "value_usd": 70261595,
+      "pct_of_portfolio": 0.51,
+      "change_pct": null
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "ALPHABET INC",
+      "cusip": "02079K305",
+      "shares": 32376,
+      "value_usd": 9310043,
+      "pct_of_portfolio": 0.07,
+      "change_pct": null
+    }
+  ],
   "accession_number": "0001172661-26-002336"
 }

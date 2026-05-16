@@ -36,6 +36,22 @@
 - חוסך מכסה: command offline לחלוטין. שום קריאת API. רק קבצים קיימים.
 - דרישה מוקדמת: שני קבצי `holdings-*.json` חייבים להיות קיימים. אם חסר אחד, ה-command אומר לרוץ `/flow-track` קודם.
 
+### `/thirteen-d {ticker}`
+
+- מה: מושך 13D ו-13G של מי שמחזיק יותר מ-5% במניה. מסמן אם יש פאלר 13D פעיל (אקטיביסט) על המניה.
+- מתי: כשרוצים לראות מי בעלי המניות הגדולים של חברה, או לחפש אקטיביסטים שנכנסו לפוזיציה.
+- מה כותב: `data/snapshots/thirteen-d-{TICKER}.json`.
+- חוסך מכסה: אם יש סנאפ מהיום, מדלג. עד 5 קריאות EdgarTools לריצה.
+- מסמן בצ'אט: top 3 בעלי מניות, ודגל אדום אם יש 13D פעיל.
+
+### `/exec-comp {ticker}`
+
+- מה: שולף DEF 14A (proxy statement) ומחזיר את השכר של המנכ"ל ו-5 הבכירים הכי משולמים. כולל salary, bonus, stock awards, options, total.
+- מתי: פעם בשנה אחרי שמתפרסם ה-proxy (בדרך כלל מרץ-מאי לחברות עם שנה קלנדרית).
+- מה כותב: `data/snapshots/exec-comp-{TICKER}.json`.
+- חוסך מכסה: אם הסנאפ הקיים תואם ל-`filing_date` של ה-DEF 14A האחרון, מדלג. עד 4 קריאות EdgarTools לריצה.
+- מסמן בצ'אט: שכר מנכ"ל כולל + יחס שכר מנכ"ל לעובד חציוני אם נחשף.
+
 ### `/morning-brief`
 
 - מה: האורקסטרטור היומי. מצליב Form 4 + 13F + signals מ-Institutional Flow Tracker על הווצ'-ליסט. נותן ציון 0-10 לכל טיקר.
@@ -58,6 +74,8 @@
 | `/insider-watch`                   | `data/snapshots/insider-{TICKER}.json`          | #2                   |
 | `/flow-track {guru}`               | `data/snapshots/holdings-{guru}-{quarter}.json` | #1                   |
 | `/portfolio-diff {guru} {q1} {q2}` | `data/snapshots/diff-{guru}-{q1}-{q2}.json`     | #3                   |
+| `/thirteen-d {ticker}`             | `data/snapshots/thirteen-d-{TICKER}.json`       | #6                   |
+| `/exec-comp {ticker}`              | `data/snapshots/exec-comp-{TICKER}.json`        | #7                   |
 | `/morning-brief`                   | `data/snapshots/screener-{YYYY-MM-DD}.json`     | #4                   |
 | `/weekly-newsletter`               | `data/snapshots/newsletter-{week_start}.json`   | #5                   |
 

@@ -3,9 +3,81 @@
   "guru_display": "Michael Burry",
   "quarter": "2025Q3",
   "filing_date": "2025-11-03",
-  "source": "sec_edgar_metadata",
-  "total_value_usd": 0,
-  "positions": [],
-  "_note": "metadata only - full positions need XML parse (out of scope for live-pull demo)",
+  "source": "sec_edgar_13f_xml",
+  "total_value_usd": 1381198076,
+  "positions": [
+    {
+      "ticker": "PLTR",
+      "company": "PALANTIR TECHNOLOGIES INC",
+      "cusip": "69608A108",
+      "shares": 5000000,
+      "value_usd": 912100000,
+      "pct_of_portfolio": 66.04,
+      "change_pct": null
+    },
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA CORPORATION",
+      "cusip": "67066G104",
+      "shares": 1000000,
+      "value_usd": 186580000,
+      "pct_of_portfolio": 13.51,
+      "change_pct": null
+    },
+    {
+      "ticker": "PFE",
+      "company": "PFIZER INC",
+      "cusip": "717081103",
+      "shares": 6000000,
+      "value_usd": 152880000,
+      "pct_of_portfolio": 11.07,
+      "change_pct": null
+    },
+    {
+      "ticker": "HAL",
+      "company": "HALLIBURTON CO",
+      "cusip": "406216101",
+      "shares": 2500000,
+      "value_usd": 61500000,
+      "pct_of_portfolio": 4.45,
+      "change_pct": null
+    },
+    {
+      "ticker": "MOH",
+      "company": "MOLINA HEALTHCARE INC",
+      "cusip": "60855R100",
+      "shares": 125000,
+      "value_usd": 23920000,
+      "pct_of_portfolio": 1.73,
+      "change_pct": null
+    },
+    {
+      "ticker": "LULU",
+      "company": "LULULEMON ATHLETICA INC",
+      "cusip": "550021109",
+      "shares": 100000,
+      "value_usd": 17793000,
+      "pct_of_portfolio": 1.29,
+      "change_pct": null
+    },
+    {
+      "ticker": "SLM",
+      "company": "SLM CORP",
+      "cusip": "78442P106",
+      "shares": 480054,
+      "value_usd": 13287895,
+      "pct_of_portfolio": 0.96,
+      "change_pct": null
+    },
+    {
+      "ticker": "BRKR 6.375 09/01/28",
+      "company": "BRUKER CORP",
+      "cusip": "116794207",
+      "shares": 48334,
+      "value_usd": 13137181,
+      "pct_of_portfolio": 0.95,
+      "change_pct": null
+    }
+  ],
   "accession_number": "0001649339-25-000007"
 }

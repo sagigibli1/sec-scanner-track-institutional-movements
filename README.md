@@ -222,6 +222,33 @@ Find a guru's CIK at https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany.
 
 ---
 
+## Scheduling | תזמון אוטומטי
+
+Run `live-pull.py` + `derive-alerts.py` automatically so the dashboard refreshes itself. Pick one option (don't run both).
+
+### Option A: GitHub Actions (cloud, free)
+
+The workflow [`.github/workflows/daily-pull.yml`](.github/workflows/daily-pull.yml) runs every weekday at 14:00 UTC (10am ET, before market open), pulls fresh data, derives alerts, and commits any changes back to the repo.
+
+1. Push this repo to GitHub.
+2. Settings -> Secrets and variables -> Actions, add:
+   - `FMP_API_KEY` (free key from financialmodelingprep.com)
+   - `EDGAR_IDENTITY` (your name + email per SEC fair-access policy)
+3. The workflow also exposes `workflow_dispatch`, so you can trigger it manually from the Actions tab.
+
+### Option B: macOS launchd (local)
+
+Run on your Mac on weekdays at 09:30 local time:
+
+```bash
+bash scripts/install-launchd.sh    # install + load
+bash scripts/uninstall-launchd.sh  # remove
+```
+
+Logs go to `data/logs/launchd.{out,err}.log`. Re-running the installer is idempotent.
+
+---
+
 ## Project structure | מבנה הפרויקט
 
 ```

@@ -10,6 +10,10 @@ __pycache__/
 .venv/
 venv/
 
+# Caches (regenerated on demand)
+data/.cache/
+data/.cusip_cache.json
+
 # Generated artifacts (regenerated on every run)
 outputs/excel/*.xlsx
 outputs/pdf/*.pdf

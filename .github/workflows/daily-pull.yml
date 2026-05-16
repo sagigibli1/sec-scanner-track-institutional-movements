@@ -1,0 +1,59 @@
+# Daily scheduled live-pull.
+# Requires GitHub Secrets: FMP_API_KEY (free key from financialmodelingprep.com),
+# EDGAR_IDENTITY (your name + email per SEC fair-access policy).
+name: daily-pull
+
+on:
+  schedule:
+    # Weekdays at 14:00 UTC (10am ET, before US market open).
+    - cron: "0 14 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    name: pull live data + derive alerts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install renderer deps
+        run: |
+          pip install -r outputs/excel/requirements.txt
+          pip install -r outputs/newsletter/requirements.txt
+          pip install -r outputs/screener/requirements.txt
+
+      - name: Live pull (FMP + SEC EDGAR)
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          EDGAR_IDENTITY: ${{ secrets.EDGAR_IDENTITY }}
+        run: |
+          python3 scripts/live-pull.py
+
+      - name: Derive alerts + re-render dashboard
+        env:
+          FMP_API_KEY: ${{ secrets.FMP_API_KEY }}
+          EDGAR_IDENTITY: ${{ secrets.EDGAR_IDENTITY }}
+        run: |
+          python3 scripts/derive-alerts.py
+
+      - name: Commit + push if data changed
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/snapshots outputs/dashboard/data
+          if git diff --cached --quiet; then
+            echo "no data changes to commit"
+            exit 0
+          fi
+          today="$(date -u +%Y-%m-%d)"
+          git commit -m "chore(data): scheduled pull ${today}"
+          git push

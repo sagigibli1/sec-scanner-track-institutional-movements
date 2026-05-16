@@ -9,21 +9,32 @@ Pulls:
 
 Writes to data/snapshots/ matching SCHEMAS.md.
 """
+import importlib.util
 import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from xml.etree.ElementTree import ParseError as XmlParseError
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "snapshots"
 DATA.mkdir(parents=True, exist_ok=True)
 
+# Load sibling parse-13f.py module (filename has a hyphen so direct import fails).
+_PARSE_13F_PATH = Path(__file__).resolve().parent / "parse-13f.py"
+_spec = importlib.util.spec_from_file_location("parse_13f", _PARSE_13F_PATH)
+if _spec is None or _spec.loader is None:
+    raise ImportError(f"could not load {_PARSE_13F_PATH}")
+parse_13f = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(parse_13f)
+
 WATCHLIST = json.loads((ROOT / "data" / "watchlist.json").read_text())
 FMP_KEY = os.environ.get("FMP_API_KEY")
-EDGAR_UA = os.environ.get("EDGAR_IDENTITY", "SEC Scanner contact@example.com")
+# EDGAR identity is read inside parse_13f from EDGAR_IDENTITY env var.
 
 if not FMP_KEY:
     print("FMP_API_KEY not set. source .env first.", file=sys.stderr)
@@ -41,15 +52,6 @@ def fmp_get(path: str, **params) -> list:
     qs = "&".join(f"{k}={v}" for k, v in params.items())
     url = f"https://financialmodelingprep.com{path}?{qs}"
     r = urllib.request.urlopen(url, timeout=30)
-    return json.loads(r.read())
-
-
-def edgar_get(path: str) -> dict:
-    req = urllib.request.Request(
-        f"https://data.sec.gov{path}",
-        headers={"User-Agent": EDGAR_UA, "Accept": "application/json"},
-    )
-    r = urllib.request.urlopen(req, timeout=30)
     return json.loads(r.read())
 
 
@@ -96,61 +98,37 @@ def pull_insiders() -> int:
     return written
 
 
-def pull_guru_13f_metadata() -> int:
-    """SEC EDGAR free path: fetch the latest 13F-HR filing metadata per guru CIK.
-
-    Doesn't parse full 13F holdings table (that needs the filing XML).
-    Writes a slim holdings shell with metadata so dashboard can show recency.
+def pull_guru_13f() -> int:
+    """Fetch the latest 13F-HR per guru CIK, parse the informationTable XML,
+    resolve CUSIPs to tickers, and write holdings-{guru}-{quarter}.json with full positions[].
     """
     written = 0
     for g in WATCHLIST.get("gurus", []):
-        cik = g["cik"].lstrip("0").zfill(10)
         try:
-            subs = edgar_get(f"/submissions/CIK{cik}.json")
-        except Exception as e:
-            print(f"  edgar fail for {g['id']}: {e}")
+            out = parse_13f.pull_guru_13f_full(g["cik"], g["display"], g["id"])
+        except (urllib.error.URLError, RuntimeError, XmlParseError, ValueError, KeyError) as e:
+            print(f"  13F fail for {g['id']}: {e}")
             continue
-        recent = subs.get("filings", {}).get("recent", {})
-        forms = recent.get("form", [])
-        accession = recent.get("accessionNumber", [])
-        dates = recent.get("filingDate", [])
-        report_dates = recent.get("reportDate", [])
-        # find most recent 13F-HR
-        idx = next((i for i, f in enumerate(forms) if f.startswith("13F")), None)
-        if idx is None:
-            print(f"  no 13F for {g['id']}")
-            continue
-        filing_date = dates[idx]
-        report_date = report_dates[idx]
-        q = ""
-        if report_date:
-            y = report_date[:4]
-            m = int(report_date[5:7])
-            q = f"{y}Q{(m - 1) // 3 + 1}"
-        out = {
-            "guru": g["id"],
-            "guru_display": g["display"],
-            "quarter": q,
-            "filing_date": filing_date,
-            "source": "sec_edgar_metadata",
-            "total_value_usd": 0,
-            "positions": [],
-            "_note": "metadata only - full positions need XML parse (out of scope for live-pull demo)",
-            "accession_number": accession[idx],
-        }
-        out_path = DATA / f"holdings-{g['id']}-{q or 'latest'}.json"
+        q = out["quarter"] or "latest"
+        out_path = DATA / f"holdings-{g['id']}-{q}.json"
         atomic_write(out_path, out)
-        print(f"  {out_path.name}: filed {filing_date} for {report_date}")
-        time.sleep(0.15)  # SEC rate limit politeness
+        n = len(out["positions"])
+        total_b = out["total_value_usd"] / 1_000_000_000
+        print(f"  {out_path.name}: {n} positions, ${total_b:.1f}B (filed {out['filing_date']})")
+        time.sleep(0.15)
         written += 1
     return written
+
+
+# Back-compat alias: older orchestration code calls pull_guru_13f_metadata().
+pull_guru_13f_metadata = pull_guru_13f
 
 
 def main() -> None:
     print(f"== live pull starting @ {datetime.now().isoformat(timespec='seconds')} ==")
     n_insider = pull_insiders()
-    n_13f = pull_guru_13f_metadata()
-    print(f"== done: {n_insider} insider files, {n_13f} 13F metadata files ==")
+    n_13f = pull_guru_13f()
+    print(f"== done: {n_insider} insider files, {n_13f} 13F holdings files ==")
 
 
 if __name__ == "__main__":
