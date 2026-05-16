@@ -1,0 +1,56 @@
+{# Hebrew RTL weekly newsletter.
+
+   Variables (from newsletter-{week}.json):
+     week_start, week_end  -> ISO dates
+     highlights[]          -> list of items
+       .type               -> insider_buy | insider_sell | 13f_new | 13f_exit | 13d_filing
+       .headline_he        -> Hebrew headline
+       .ticker
+       .guru_or_insider
+       .value_usd
+       .context_he
+#}
+# מעקב שחקנים גדולים - שבוע {{ week_start }} עד {{ week_end }}
+
+> סיכום שבועי קצר על מה ששחקנים מוסדיים ומנהלים בכירים עשו בשוק האמריקאי.
+> כל הנתונים מ-EDGAR (SEC) ומקורות ציבוריים.
+
+---
+
+## אירועים מרכזיים השבוע
+
+{% if highlights %}
+{% for h in highlights %}
+### {{ loop.index }}. {{ h.headline_he }}
+
+- **טיקר:** `{{ h.ticker }}`
+- **שחקן:** {{ h.guru_or_insider }}
+- **סוג אירוע:** {{ type_label(h.type) }}
+- **שווי:** {{ fmt_money(h.value_usd) }}
+
+{{ h.context_he }}
+
+{% endfor %}
+{% else %}
+לא נרשמו אירועים בולטים בשבוע הזה.
+{% endif %}
+
+---
+
+## מה לעקוב אחריו בשבוע הבא
+
+- חיפוש דיווחי 13F נוספים שיגיעו עד סוף החודש.
+- פעילות פנים ב-Form 4 על מניות ה-Watchlist.
+- הגשות 13D חדשות שיכולות להעיד על מהלך אקטיביסטי.
+
+---
+
+## דיסקליימר משפטי
+
+הניוזלטר הזה הוא חינוך טכנולוגי בלבד. אין כאן ייעוץ השקעות, המלצות קנייה או מכירה,
+או חוות דעת על ניירות ערך. כל החלטה היא באחריותך בלבד.
+
+מודול זה עוסק בעיבוד מידע פיננסי ציבורי. הנתונים שמוצגים (דיווחי SEC) מתפרסמים
+באיחור, לעיתים עד 45 יום. פעולה של מנהל בכיר או קרן אינה אינדיקציה להמלצה.
+
+מומלץ להתייעץ עם יועץ השקעות מורשה לפני קבלת החלטות פיננסיות.

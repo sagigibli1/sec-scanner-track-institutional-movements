@@ -1,0 +1,62 @@
+{
+  "date": "2026-05-17",
+  "watchlist": ["AAPL", "NVDA", "TSLA", "MSFT", "GOOG", "AMZN", "META"],
+  "rankings": [
+    {
+      "ticker": "NVDA",
+      "score": 8.5,
+      "signal": "strong_buy",
+      "signal_reason": "5 superinvestors added positions this quarter",
+      "top_buyers": ["Ackman", "Burry"],
+      "insider_recent": { "buys_30d": 2, "sells_30d": 0 }
+    },
+    {
+      "ticker": "META",
+      "score": 7.2,
+      "signal": "buy",
+      "signal_reason": "Berkshire opened new position, no insider selling",
+      "top_buyers": ["Berkshire"],
+      "insider_recent": { "buys_30d": 1, "sells_30d": 1 }
+    },
+    {
+      "ticker": "AAPL",
+      "score": 5.4,
+      "signal": "hold",
+      "signal_reason": "Berkshire trimmed slightly, mixed insider activity",
+      "top_buyers": [],
+      "insider_recent": { "buys_30d": 0, "sells_30d": 2 }
+    },
+    {
+      "ticker": "TSLA",
+      "score": 6.8,
+      "signal": "buy",
+      "signal_reason": "CEO recent open-market buy",
+      "top_buyers": [],
+      "insider_recent": { "buys_30d": 1, "sells_30d": 1 }
+    },
+    {
+      "ticker": "MSFT",
+      "score": 4.1,
+      "signal": "hold",
+      "signal_reason": "No notable guru activity this quarter",
+      "top_buyers": [],
+      "insider_recent": { "buys_30d": 0, "sells_30d": 0 }
+    },
+    {
+      "ticker": "GOOG",
+      "score": 3.2,
+      "signal": "sell",
+      "signal_reason": "Multiple insider sells, no guru buying",
+      "top_buyers": [],
+      "insider_recent": { "buys_30d": 0, "sells_30d": 4 }
+    },
+    {
+      "ticker": "AMZN",
+      "score": 5.0,
+      "signal": "hold",
+      "signal_reason": "Neutral signals across the board",
+      "top_buyers": [],
+      "insider_recent": { "buys_30d": 0, "sells_30d": 1 }
+    }
+  ]
+}

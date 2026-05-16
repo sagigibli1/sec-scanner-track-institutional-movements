@@ -1,0 +1,11 @@
+{
+  "guru": "berkshire_hathaway",
+  "guru_display": "Berkshire Hathaway",
+  "quarter": "2026Q1",
+  "filing_date": "2026-05-15",
+  "source": "sec_edgar_metadata",
+  "total_value_usd": 0,
+  "positions": [],
+  "_note": "metadata only - full positions need XML parse (out of scope for live-pull demo)",
+  "accession_number": "0001193125-26-226661"
+}

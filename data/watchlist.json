@@ -1,0 +1,33 @@
+{
+  "tickers": [
+    "AAPL",
+    "NVDA",
+    "TSLA",
+    "MSFT",
+    "GOOG"
+  ],
+  "gurus": [
+    {
+      "id": "berkshire_hathaway",
+      "cik": "0001067983",
+      "display": "Berkshire Hathaway"
+    },
+    {
+      "id": "michael_burry",
+      "cik": "0001649339",
+      "display": "Michael Burry"
+    },
+    {
+      "id": "bill_ackman",
+      "cik": "0001336528",
+      "display": "Bill Ackman / Pershing"
+    }
+  ],
+  "insider_watch": [
+    "TSLA",
+    "NVDA",
+    "META",
+    "AAPL",
+    "MSFT"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "guru": "michael_burry",
+  "guru_display": "Michael Burry",
+  "quarter": "2026Q1",
+  "filing_date": "2026-05-15",
+  "source": "edgartools",
+  "total_value_usd": 142000000,
+  "positions": [
+    {
+      "ticker": "BABA",
+      "company": "Alibaba Group",
+      "shares": 200000,
+      "value_usd": 18000000,
+      "pct_of_portfolio": 12.7,
+      "change_pct": 0.0
+    },
+    {
+      "ticker": "JD",
+      "company": "JD.com Inc",
+      "shares": 500000,
+      "value_usd": 15000000,
+      "pct_of_portfolio": 10.6,
+      "change_pct": 25.0
+    }
+  ]
+}

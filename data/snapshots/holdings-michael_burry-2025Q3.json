@@ -1,0 +1,11 @@
+{
+  "guru": "michael_burry",
+  "guru_display": "Michael Burry",
+  "quarter": "2025Q3",
+  "filing_date": "2025-11-03",
+  "source": "sec_edgar_metadata",
+  "total_value_usd": 0,
+  "positions": [],
+  "_note": "metadata only - full positions need XML parse (out of scope for live-pull demo)",
+  "accession_number": "0001649339-25-000007"
+}

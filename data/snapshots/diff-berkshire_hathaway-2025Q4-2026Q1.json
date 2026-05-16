@@ -1,0 +1,61 @@
+{
+  "guru": "berkshire_hathaway",
+  "from_quarter": "2025Q4",
+  "to_quarter": "2026Q1",
+  "summary": {
+    "total_value_change_pct": 4.2,
+    "new_positions_count": 2,
+    "exited_positions_count": 1,
+    "increased_positions_count": 5,
+    "decreased_positions_count": 3
+  },
+  "new": [
+    {
+      "ticker": "NVDA",
+      "shares": 2000000,
+      "value_usd": 1800000000,
+      "pct_of_portfolio": 0.6
+    },
+    {
+      "ticker": "META",
+      "shares": 500000,
+      "value_usd": 280000000,
+      "pct_of_portfolio": 0.1
+    }
+  ],
+  "exited": [
+    {
+      "ticker": "HPQ",
+      "shares_sold": 10000000,
+      "value_usd": 320000000
+    }
+  ],
+  "increased": [
+    {
+      "ticker": "OXY",
+      "old_shares": 248000000,
+      "new_shares": 260000000,
+      "delta_pct": 4.8
+    },
+    {
+      "ticker": "CVX",
+      "old_shares": 118000000,
+      "new_shares": 125000000,
+      "delta_pct": 5.9
+    }
+  ],
+  "decreased": [
+    {
+      "ticker": "BAC",
+      "old_shares": 1000000000,
+      "new_shares": 940000000,
+      "delta_pct": -6.0
+    },
+    {
+      "ticker": "AAPL",
+      "old_shares": 908000000,
+      "new_shares": 905560000,
+      "delta_pct": -0.3
+    }
+  ]
+}

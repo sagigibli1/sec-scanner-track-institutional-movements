@@ -1,0 +1,46 @@
+{
+  "week_start": "2026-05-11",
+  "week_end": "2026-05-17",
+  "highlights": [
+    {
+      "type": "13f_new",
+      "headline_he": "באפט הוסיף 1.8 מיליארד דולר ל-NVDA",
+      "ticker": "NVDA",
+      "guru_or_insider": "Berkshire Hathaway",
+      "value_usd": 1800000000,
+      "context_he": "רבעון ראשון שברקשייר קונה את המניה"
+    },
+    {
+      "type": "insider_buy",
+      "headline_he": "מאסק קנה ב-32 מיליון דולר טסלה בשוק הפתוח",
+      "ticker": "TSLA",
+      "guru_or_insider": "Elon Musk",
+      "value_usd": 32050000,
+      "context_he": "קנייה ראשונה של המנכל ב-12 חודשים אחרונים"
+    },
+    {
+      "type": "insider_sell",
+      "headline_he": "הואנג מכר ב-45 מיליון דולר אנבידיה",
+      "ticker": "NVDA",
+      "guru_or_insider": "Jensen Huang",
+      "value_usd": 45250000,
+      "context_he": "חלק מתוכנית מכירה אוטומטית (10b5-1)"
+    },
+    {
+      "type": "13f_exit",
+      "headline_he": "ברקשייר יצאה מ-HPQ לחלוטין",
+      "ticker": "HPQ",
+      "guru_or_insider": "Berkshire Hathaway",
+      "value_usd": 320000000,
+      "context_he": "סגירת פוזיציה שנפתחה ב-2022"
+    },
+    {
+      "type": "13d_filing",
+      "headline_he": "אקמן הגיש 13D על META עם 5.1% מהמניות",
+      "ticker": "META",
+      "guru_or_insider": "Bill Ackman",
+      "value_usd": 2100000000,
+      "context_he": "הגשת 13D מאותתת על כוונה אקטיביסטית"
+    }
+  ]
+}

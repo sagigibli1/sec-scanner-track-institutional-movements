@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>SEC Scanner | מעקב שחקנים גדולים</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const useDark = stored ? stored === "dark" : prefersDark;
+        if (useDark) document.documentElement.classList.add("dark");
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 17l6-6 4 4 8-8" />
+              <path d="M14 7h7v7" />
+            </svg>
+          </span>
+          <div>
+            <p class="brand-name">SEC Scanner</p>
+            <p class="brand-sub">מעקב פעילות שחקנים גדולים בזמן אמת</p>
+          </div>
+        </div>
+        <div class="header-tools">
+          <span id="live-dot" class="live-dot">LIVE</span>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            aria-label="החלף מצב תצוגה"
+            type="button"
+          >
+            <svg
+              class="icon-light"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+              />
+            </svg>
+            <svg
+              class="icon-dark"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- KPI ribbon -->
+      <section class="kpi-ribbon" aria-label="Key metrics">
+        <div class="kpi" id="kpi-insider-buys">
+          <p class="kpi-label">קניות פנים</p>
+          <p class="kpi-value">
+            <span class="skeleton" style="width: 60px"></span>
+          </p>
+          <p class="kpi-meta">השבוע</p>
+        </div>
+        <div class="kpi" id="kpi-insider-sells">
+          <p class="kpi-label">מכירות פנים</p>
+          <p class="kpi-value">
+            <span class="skeleton" style="width: 60px"></span>
+          </p>
+          <p class="kpi-meta">השבוע</p>
+        </div>
+        <div class="kpi" id="kpi-flows">
+          <p class="kpi-label">תנועות מוסדיות</p>
+          <p class="kpi-value">
+            <span class="skeleton" style="width: 60px"></span>
+          </p>
+          <p class="kpi-meta">רבעון אחרון</p>
+        </div>
+        <div class="kpi" id="kpi-alerts">
+          <p class="kpi-label">התראות פעילות</p>
+          <p class="kpi-value">
+            <span class="skeleton" style="width: 60px"></span>
+          </p>
+          <p class="kpi-meta">כעת</p>
+        </div>
+      </section>
+
+      <!-- 2x2 panel grid -->
+      <div class="panel-grid">
+        <section class="panel" id="panel-insiders">
+          <header class="panel-header">
+            <div class="panel-title">
+              <span class="panel-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 11l-3 3-2-2" />
+                </svg>
+              </span>
+              <h2>פעילות פנים</h2>
+              <span class="panel-sub">Form 4 לפי טיקרי מעקב</span>
+            </div>
+            <span class="panel-count" id="count-insiders" hidden>0</span>
+          </header>
+          <div class="panel-body">
+            <div class="loading" data-loading>טוען נתונים...</div>
+            <table class="data-table" hidden>
+              <thead>
+                <tr>
+                  <th>תאריך</th>
+                  <th>טיקר</th>
+                  <th>פנים</th>
+                  <th>פעולה</th>
+                  <th>מניות</th>
+                  <th>שווי</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody data-rows></tbody>
+            </table>
+            <div class="empty" hidden data-empty>אין דיווחים להצגה.</div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-flows">
+          <header class="panel-header">
+            <div class="panel-title">
+              <span class="panel-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 3v18h18" />
+                  <path d="M7 14l4-4 3 3 5-6" />
+                </svg>
+              </span>
+              <h2>כסף מוסדי</h2>
+              <span class="panel-sub">שינויים אחרונים בקרב גורואים</span>
+            </div>
+            <span class="panel-count" id="count-flows" hidden>0</span>
+          </header>
+          <div class="panel-body">
+            <div class="loading" data-loading>טוען נתונים...</div>
+            <table class="data-table" hidden>
+              <thead>
+                <tr>
+                  <th>גורו</th>
+                  <th>טיקר</th>
+                  <th>שינוי</th>
+                  <th>שווי</th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody data-rows></tbody>
+            </table>
+            <div class="empty" hidden data-empty>אין שינויים זמינים.</div>
+          </div>
+        </section>
+
+        <section class="panel span-2" id="panel-watchlist">
+          <header class="panel-header">
+            <div class="panel-title">
+              <span class="panel-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="M21 21l-4.35-4.35" />
+                </svg>
+              </span>
+              <h2>Watchlist Screener</h2>
+              <span class="panel-sub">דירוג יומי לפי ניקוד מצטבר</span>
+            </div>
+            <span class="panel-count" id="count-watchlist" hidden>0</span>
+          </header>
+          <div class="panel-body">
+            <div class="loading" data-loading>טוען נתונים...</div>
+            <table class="data-table" hidden>
+              <thead>
+                <tr>
+                  <th>טיקר</th>
+                  <th>ניקוד</th>
+                  <th>איתות</th>
+                  <th>סיבה</th>
+                  <th>קונים מובילים</th>
+                  <th>פנים 30 יום</th>
+                </tr>
+              </thead>
+              <tbody data-rows></tbody>
+            </table>
+            <div class="empty" hidden data-empty>הסורק לא רץ היום.</div>
+          </div>
+        </section>
+
+        <section class="panel span-2" id="panel-alerts">
+          <header class="panel-header">
+            <div class="panel-title">
+              <span class="panel-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                  <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                </svg>
+              </span>
+              <h2>התראות</h2>
+              <span class="panel-sub">דברים שהמערכת סימנה</span>
+            </div>
+            <span class="panel-count" id="count-alerts" hidden>0</span>
+          </header>
+          <div class="panel-body">
+            <div class="loading" data-loading>טוען נתונים...</div>
+            <ul class="alert-list" hidden data-rows></ul>
+            <div class="empty" hidden data-empty>אין התראות פעילות.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <h3>דיסקליימר משפטי</h3>
+        <p>
+          המערכת מציגה מידע ציבורי בלבד. אין כאן ייעוץ השקעות, המלצות קנייה או
+          מכירה, או חוות דעת על ניירות ערך. כל החלטה היא באחריותך בלבד.
+        </p>
+        <p class="footer-meta">
+          SEC Scanner | data: EDGAR + FMP | up to 45d lag on 13F filings
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // theme toggle
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      });
+
+      // formatters
+      const nf = new Intl.NumberFormat("en-US");
+      const fmtMoney = (v) => {
+        if (v == null || v === 0) return "-";
+        const a = Math.abs(v);
+        if (a >= 1_000_000_000)
+          return "$" + (v / 1_000_000_000).toFixed(2) + "B";
+        if (a >= 1_000_000) return "$" + (v / 1_000_000).toFixed(1) + "M";
+        if (a >= 1_000) return "$" + (v / 1_000).toFixed(0) + "K";
+        return "$" + nf.format(v);
+      };
+      const fmtPct = (v) => {
+        if (v == null) return "-";
+        const sign = v > 0 ? "+" : "";
+        const arrow = v > 0 ? "▲" : v < 0 ? "▼" : "";
+        return `<span class="delta-arrow">${arrow}</span>${sign}${v.toFixed(1)}%`;
+      };
+      const fmtShares = (v) => (v == null ? "-" : nf.format(v));
+      const escapeHtml = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+
+      const ACTION_LABEL = { buy: "קנייה", sell: "מכירה" };
+      const SIGNAL_LABEL = {
+        strong_buy: "קנייה חזקה",
+        buy: "קנייה",
+        hold: "החזק",
+        sell: "מכירה",
+        strong_sell: "מכירה חזקה",
+      };
+      const CHANGE_LABEL = {
+        new: "פוזיציה חדשה",
+        exited: "יציאה מהפוזיציה",
+        increased: "הגדלה",
+        decreased: "הקטנה",
+      };
+
+      function showPanel(panelId, count) {
+        const panel = document.getElementById(panelId);
+        panel.querySelector("[data-loading]").hidden = true;
+        const table = panel.querySelector(".data-table, .alert-list");
+        const empty = panel.querySelector("[data-empty]");
+        const counter = panel.querySelector(".panel-count");
+        if (count > 0) {
+          if (table) table.hidden = false;
+          empty.hidden = true;
+          if (counter) {
+            counter.textContent = count;
+            counter.hidden = false;
+          }
+        } else {
+          if (table) table.hidden = true;
+          empty.hidden = false;
+        }
+      }
+
+      function panelError(panelId, msg) {
+        const panel = document.getElementById(panelId);
+        const loading = panel.querySelector("[data-loading]");
+        loading.textContent = "שגיאה: " + msg;
+        loading.classList.add("error");
+      }
+
+      function setKpi(id, value, kind) {
+        const node = document.getElementById(id);
+        if (!node) return;
+        node.querySelector(".kpi-value").textContent = value;
+        node.classList.remove("is-pos", "is-neg", "is-warn");
+        if (kind) node.classList.add("is-" + kind);
+      }
+
+      async function loadJson(path) {
+        const res = await fetch(path, { cache: "no-cache" });
+        if (!res.ok) throw new Error(res.status + " " + res.statusText);
+        return res.json();
+      }
+
+      // 1. Insiders
+      loadJson("data/insiders.json")
+        .then((data) => {
+          const trades = data.trades || [];
+          const rows = trades
+            .map(
+              (t) => `
+              <tr>
+                <td class="col-num">${escapeHtml(t.date)}</td>
+                <td class="ticker">${escapeHtml(t.ticker)}</td>
+                <td>${escapeHtml(t.insider)}</td>
+                <td><span class="badge action-${escapeHtml(t.action)}">${escapeHtml(ACTION_LABEL[t.action] || t.action)}</span></td>
+                <td class="col-num">${fmtShares(t.shares)}</td>
+                <td class="col-num">${fmtMoney(t.value_usd)}</td>
+                <td>${t.form_url ? `<a class="link-icon" href="${escapeHtml(t.form_url)}" target="_blank" rel="noopener" aria-label="פתח קובץ ב-SEC"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></a>` : ""}</td>
+              </tr>`,
+            )
+            .join("");
+          document.querySelector("#panel-insiders [data-rows]").innerHTML =
+            rows;
+          showPanel("panel-insiders", trades.length);
+
+          const buys = trades.filter((t) => t.action === "buy");
+          const sells = trades.filter((t) => t.action === "sell");
+          setKpi(
+            "kpi-insider-buys",
+            buys.length === 0 ? "0" : nf.format(buys.length),
+            buys.length > 0 ? "pos" : null,
+          );
+          setKpi(
+            "kpi-insider-sells",
+            sells.length === 0 ? "0" : nf.format(sells.length),
+            sells.length > 0 ? "neg" : null,
+          );
+        })
+        .catch((e) => {
+          panelError("panel-insiders", e.message);
+          setKpi("kpi-insider-buys", "-");
+          setKpi("kpi-insider-sells", "-");
+        });
+
+      // 2. Flows
+      loadJson("data/flows.json")
+        .then((data) => {
+          const changes = data.changes || [];
+          const rows = changes
+            .map(
+              (c) => `
+              <tr>
+                <td>${escapeHtml(c.guru_display)}</td>
+                <td class="ticker">${escapeHtml(c.ticker)}</td>
+                <td>${escapeHtml(CHANGE_LABEL[c.change_type] || c.change_type)}</td>
+                <td class="col-num">${fmtMoney(c.value_usd)}</td>
+                <td class="col-num ${c.delta_pct >= 0 ? "pos" : "neg"}">${fmtPct(c.delta_pct)}</td>
+              </tr>`,
+            )
+            .join("");
+          document.querySelector("#panel-flows [data-rows]").innerHTML = rows;
+          showPanel("panel-flows", changes.length);
+          setKpi("kpi-flows", nf.format(changes.length));
+        })
+        .catch((e) => {
+          panelError("panel-flows", e.message);
+          setKpi("kpi-flows", "-");
+        });
+
+      // 3. Watchlist
+      loadJson("data/watchlist.json")
+        .then((data) => {
+          const rankings = data.rankings || [];
+          const rows = rankings
+            .map(
+              (r) => `
+              <tr>
+                <td class="ticker">${escapeHtml(r.ticker)}</td>
+                <td><span class="score">${r.score.toFixed(1)}</span></td>
+                <td><span class="badge signal-${escapeHtml(r.signal)}">${escapeHtml(SIGNAL_LABEL[r.signal] || r.signal)}</span></td>
+                <td class="reason">${escapeHtml(r.signal_reason)}</td>
+                <td>${(r.top_buyers || []).map(escapeHtml).join(", ") || "-"}</td>
+                <td class="insider-mini">
+                  <span class="pos">+${r.insider_recent?.buys_30d ?? 0}</span>
+                  <span class="neg">-${r.insider_recent?.sells_30d ?? 0}</span>
+                </td>
+              </tr>`,
+            )
+            .join("");
+          document.querySelector("#panel-watchlist [data-rows]").innerHTML =
+            rows;
+          showPanel("panel-watchlist", rankings.length);
+        })
+        .catch((e) => panelError("panel-watchlist", e.message));
+
+      // 4. Alerts
+      loadJson("data/alerts.json")
+        .then((data) => {
+          const alerts = data.alerts || [];
+          const rows = alerts
+            .map(
+              (a) => `
+              <li class="alert alert-${escapeHtml(a.severity || "info")}">
+                <span class="alert-tag">${escapeHtml(a.tag || "התראה")}</span>
+                <span class="alert-text">${escapeHtml(a.text_he)}</span>
+                ${a.ticker ? `<span class="alert-ticker">${escapeHtml(a.ticker)}</span>` : ""}
+              </li>`,
+            )
+            .join("");
+          document.querySelector("#panel-alerts [data-rows]").innerHTML = rows;
+          showPanel("panel-alerts", alerts.length);
+          setKpi(
+            "kpi-alerts",
+            alerts.length === 0 ? "0" : nf.format(alerts.length),
+            alerts.length > 0 ? "warn" : null,
+          );
+        })
+        .catch((e) => {
+          panelError("panel-alerts", e.message);
+          setKpi("kpi-alerts", "-");
+        });
+    </script>
+  </body>
+</html>
