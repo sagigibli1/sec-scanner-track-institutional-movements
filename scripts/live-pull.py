@@ -63,7 +63,7 @@ def pull_insiders() -> int:
         try:
             rows = fmp_get("/stable/insider-trading", symbol=ticker, limit=50)
         except Exception as e:
-            print(f"  insider {ticker}: error — {e}")
+            print(f"  insider {ticker}: error - {e}")
             rows = []
 
         trades = []
