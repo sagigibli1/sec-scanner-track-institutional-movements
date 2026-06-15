@@ -58,19 +58,16 @@ def fmp_get(path: str, **params) -> list:
 def pull_insiders() -> int:
     tickers = WATCHLIST.get("insider_watch", [])
     print(f"pulling insider trades for {tickers}...")
-    by_ticker: dict[str, list] = {t: [] for t in tickers}
-    # free tier: page=0 only. Pull latest 100, filter to watchlist.
-    batch = fmp_get("/stable/insider-trading/latest", page=0, limit=100)
-    print(f"  pulled {len(batch)} latest filings (free-tier cap)")
-    for row in batch:
-        sym = row.get("symbol")
-        if sym in by_ticker:
-            by_ticker[sym].append(row)
-
     written = 0
-    for ticker, rows in by_ticker.items():
+    for ticker in tickers:
+        try:
+            rows = fmp_get("/stable/insider-trading", symbol=ticker, limit=50)
+        except Exception as e:
+            print(f"  insider {ticker}: error — {e}")
+            rows = []
+
         trades = []
-        for r in rows[:10]:
+        for r in rows:
             tx_type = r.get("transactionType", "").upper()
             action = "buy" if tx_type.startswith("P") else "sell" if tx_type.startswith("S") else tx_type
             shares = int(r.get("securitiesTransacted", 0) or 0)
@@ -95,6 +92,7 @@ def pull_insiders() -> int:
         atomic_write(DATA / f"insider-{ticker}.json", out)
         print(f"  insider-{ticker}.json: {len(trades)} trades")
         written += 1
+        time.sleep(0.2)
     return written
 
 

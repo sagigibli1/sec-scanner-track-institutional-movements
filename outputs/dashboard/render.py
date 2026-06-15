@@ -41,7 +41,7 @@ def atomic_write(path: Path, payload: dict) -> None:
     tmp.replace(path)
 
 
-def gather_insiders(days: int = 14) -> dict:
+def gather_insiders(days: int = 90) -> dict:
     """Aggregate trades from all insider-*.json files in the last `days`."""
     cutoff = datetime.utcnow().date() - timedelta(days=days)
     rows: list[dict] = []
@@ -74,7 +74,7 @@ def gather_insiders(days: int = 14) -> dict:
                 }
             )
     rows.sort(key=lambda r: r["date"], reverse=True)
-    return {"generated_at": datetime.utcnow().isoformat() + "Z", "trades": rows[:25]}
+    return {"generated_at": datetime.utcnow().isoformat() + "Z", "trades": rows[:100]}
 
 
 def gather_flows(top_n: int = 5) -> dict:
