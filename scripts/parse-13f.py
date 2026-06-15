@@ -243,7 +243,7 @@ def _load_cusip_cache() -> dict:
 def _save_cusip_cache(cache: dict) -> None:
     tmp = CUSIP_CACHE_PATH.with_suffix(CUSIP_CACHE_PATH.suffix + ".tmp")
     tmp.write_text(json.dumps(cache, indent=2, ensure_ascii=False, sort_keys=True))
-    tmp.rename(CUSIP_CACHE_PATH)
+    tmp.replace(CUSIP_CACHE_PATH)
 
 
 _cusip_cache_mem: dict | None = None
@@ -383,7 +383,7 @@ def fetch_filing_xml(cik: str, accession_no: str) -> str:
     # atomic write
     tmp = cache_path.with_suffix(cache_path.suffix + ".tmp")
     tmp.write_text(text)
-    tmp.rename(cache_path)
+    tmp.replace(cache_path)
     return text
 
 
@@ -467,7 +467,7 @@ def pull_guru_13f_full(cik: str, display_name: str, guru_id: str) -> dict:
 def _atomic_write_json(path: Path, data: dict) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False))
-    tmp.rename(path)
+    tmp.replace(path)
 
 
 def _load_watchlist() -> dict:

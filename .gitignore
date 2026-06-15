@@ -35,3 +35,9 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Windows launcher files (local only)
+start-dashboard.bat
+start-dashboard.vbs
+start-server.vbs
+windows-setup.ps1

@@ -44,7 +44,7 @@ if not FMP_KEY:
 def atomic_write(path: Path, data: dict) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(data, indent=2, ensure_ascii=False))
-    tmp.rename(path)
+    tmp.replace(path)  # replace() works on Windows when target already exists
 
 
 def fmp_get(path: str, **params) -> list:

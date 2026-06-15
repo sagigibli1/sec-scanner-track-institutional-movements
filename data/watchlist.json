@@ -1,10 +1,14 @@
 {
   "tickers": [
-    "AAPL",
-    "NVDA",
-    "TSLA",
+    "GOOGL",
+    "META",
     "MSFT",
-    "GOOG"
+    "NVDA",
+    "APP",
+    "ZETA",
+    "PLTR",
+    "TSLA",
+    "AVGO"
   ],
   "gurus": [
     {
@@ -24,10 +28,14 @@
     }
   ],
   "insider_watch": [
-    "TSLA",
-    "NVDA",
+    "GOOGL",
     "META",
-    "AAPL",
-    "MSFT"
+    "MSFT",
+    "NVDA",
+    "APP",
+    "ZETA",
+    "PLTR",
+    "TSLA",
+    "AVGO"
   ]
 }

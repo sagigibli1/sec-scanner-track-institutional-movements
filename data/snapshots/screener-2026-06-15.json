@@ -1,0 +1,125 @@
+{
+  "date": "2026-06-15",
+  "watchlist": [
+    "GOOGL",
+    "META",
+    "MSFT",
+    "NVDA",
+    "APP",
+    "ZETA",
+    "PLTR",
+    "TSLA",
+    "AVGO"
+  ],
+  "rankings": [
+    {
+      "ticker": "META",
+      "score": 4.0,
+      "signal": "strong_buy",
+      "signal_reason": "Berkshire Hathaway opened new position this quarter",
+      "top_buyers": [
+        "Berkshire Hathaway",
+        "Bill Ackman / Pershing"
+      ],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "GOOGL",
+      "score": 3.0,
+      "signal": "buy",
+      "signal_reason": "Held by Berkshire Hathaway, Bill Ackman / Pershing",
+      "top_buyers": [
+        "Berkshire Hathaway",
+        "Bill Ackman / Pershing"
+      ],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "NVDA",
+      "score": 2.5,
+      "signal": "buy",
+      "signal_reason": "Berkshire Hathaway opened new position this quarter",
+      "top_buyers": [
+        "Berkshire Hathaway"
+      ],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "MSFT",
+      "score": 1.5,
+      "signal": "buy",
+      "signal_reason": "Held by Bill Ackman / Pershing",
+      "top_buyers": [
+        "Bill Ackman / Pershing"
+      ],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "APP",
+      "score": 0.0,
+      "signal": "hold",
+      "signal_reason": "No major guru position tracked this quarter",
+      "top_buyers": [],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "ZETA",
+      "score": 0.0,
+      "signal": "hold",
+      "signal_reason": "No major guru position tracked this quarter",
+      "top_buyers": [],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "PLTR",
+      "score": 0.0,
+      "signal": "hold",
+      "signal_reason": "No major guru position tracked this quarter",
+      "top_buyers": [],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "TSLA",
+      "score": 0.0,
+      "signal": "hold",
+      "signal_reason": "No major guru position tracked this quarter",
+      "top_buyers": [],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    },
+    {
+      "ticker": "AVGO",
+      "score": 0.0,
+      "signal": "hold",
+      "signal_reason": "No major guru position tracked this quarter",
+      "top_buyers": [],
+      "insider_recent": {
+        "buys_30d": 0,
+        "sells_30d": 0
+      }
+    }
+  ]
+}
