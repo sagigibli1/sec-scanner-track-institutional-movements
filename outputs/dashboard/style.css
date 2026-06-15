@@ -195,6 +195,43 @@ body {
   gap: 10px;
 }
 
+.refresh-btn {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  height: 36px;
+  padding: 0 12px;
+  cursor: pointer;
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  background: var(--elev);
+  border-color: var(--border-strong);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .theme-toggle {
   background: var(--panel);
   border: 1px solid var(--border);

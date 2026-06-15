@@ -48,6 +48,23 @@
         <div class="header-tools">
           <span id="live-dot" class="live-dot">LIVE</span>
           <button
+            id="refresh-btn"
+            class="refresh-btn"
+            aria-label="עדכן נתונים מ-FMP"
+            type="button"
+            title="משוך נתונים עדכניים מ-FMP ו-SEC"
+          >
+            <svg id="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M23 4v6h-6"/>
+              <path d="M1 20v-6h6"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            <svg id="refresh-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            <span id="refresh-label">עדכן</span>
+          </button>
+          <button
             id="theme-toggle"
             class="theme-toggle"
             aria-label="החלף מצב תצוגה"
@@ -285,6 +302,40 @@
     </footer>
 
     <script>
+      // refresh button
+      document.getElementById("refresh-btn").addEventListener("click", async () => {
+        const btn = document.getElementById("refresh-btn");
+        const icon = document.getElementById("refresh-icon");
+        const spinner = document.getElementById("refresh-spinner");
+        const label = document.getElementById("refresh-label");
+
+        btn.disabled = true;
+        icon.hidden = true;
+        spinner.hidden = false;
+        spinner.style.animation = "spin 1s linear infinite";
+        label.textContent = "מעדכן...";
+
+        try {
+          const res = await fetch("/refresh", { method: "GET" });
+          if (res.ok) {
+            label.textContent = "בוצע!";
+            setTimeout(() => location.reload(), 800);
+          } else {
+            label.textContent = "שגיאה";
+            spinner.hidden = true;
+            icon.hidden = false;
+            btn.disabled = false;
+            setTimeout(() => { label.textContent = "עדכן"; }, 2500);
+          }
+        } catch (e) {
+          label.textContent = "שגיאה";
+          spinner.hidden = true;
+          icon.hidden = false;
+          btn.disabled = false;
+          setTimeout(() => { label.textContent = "עדכן"; }, 2500);
+        }
+      });
+
       // theme toggle
       document.getElementById("theme-toggle").addEventListener("click", () => {
         const isDark = document.documentElement.classList.toggle("dark");
