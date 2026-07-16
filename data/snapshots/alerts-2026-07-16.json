@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-07-16T15:27:59Z",
+  "alerts": [
+    {
+      "tag": "NEW GURU POSITION",
+      "severity": "info",
+      "text_he": "berkshire_hathaway פתח פוזיציה חדשה ב-NVDA בשווי $1800.0M",
+      "ticker": "NVDA",
+      "value_usd": 1800000000,
+      "source_file": "data/snapshots/diff-berkshire_hathaway-2025Q4-2026Q1.json"
+    },
+    {
+      "tag": "NEW GURU POSITION",
+      "severity": "info",
+      "text_he": "berkshire_hathaway פתח פוזיציה חדשה ב-META בשווי $280.0M",
+      "ticker": "META",
+      "value_usd": 280000000,
+      "source_file": "data/snapshots/diff-berkshire_hathaway-2025Q4-2026Q1.json"
+    },
+    {
+      "tag": "GURU EXIT",
+      "severity": "warn",
+      "text_he": "berkshire_hathaway יצא לגמרי מ-HPQ ($320.0M)",
+      "ticker": "HPQ",
+      "value_usd": 320000000,
+      "source_file": "data/snapshots/diff-berkshire_hathaway-2025Q4-2026Q1.json"
+    },
+    {
+      "tag": "STALE DATA",
+      "severity": "warn",
+      "text_he": "דאטה ישנה: Michael Burry הגיש לפני 255 ימים (2025-11-03)",
+      "ticker": null,
+      "value_usd": 0,
+      "source_file": "data/snapshots/holdings-michael_burry-2025Q3.json"
+    }
+  ]
+}
