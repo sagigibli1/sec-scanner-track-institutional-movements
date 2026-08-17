@@ -1,0 +1,272 @@
+{
+  "guru": "berkshire_hathaway",
+  "guru_display": "Berkshire Hathaway",
+  "quarter": "2026Q2",
+  "filing_date": "2026-08-14",
+  "source": "sec_edgar_13f_xml",
+  "total_value_usd": 299253556246,
+  "positions": [
+    {
+      "ticker": "AAPL",
+      "company": "APPLE INC",
+      "cusip": "037833100",
+      "shares": 227917808,
+      "value_usd": 65950296923,
+      "pct_of_portfolio": 22.04,
+      "change_pct": null
+    },
+    {
+      "ticker": "AXP",
+      "company": "AMERICAN EXPRESS CO",
+      "cusip": "025816109",
+      "shares": 151610700,
+      "value_usd": 51282319275,
+      "pct_of_portfolio": 17.14,
+      "change_pct": null
+    },
+    {
+      "ticker": "KO",
+      "company": "COCA COLA CO",
+      "cusip": "191216100",
+      "shares": 400000000,
+      "value_usd": 32508000000,
+      "pct_of_portfolio": 10.86,
+      "change_pct": null
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "ALPHABET INC",
+      "cusip": "02079K305",
+      "shares": 78791167,
+      "value_usd": 28157599351,
+      "pct_of_portfolio": 9.41,
+      "change_pct": null
+    },
+    {
+      "ticker": "BAC",
+      "company": "BANK OF AMER CORP",
+      "cusip": "060505104",
+      "shares": 483394015,
+      "value_usd": 27543790975,
+      "pct_of_portfolio": 9.2,
+      "change_pct": null
+    },
+    {
+      "ticker": "CVX",
+      "company": "CHEVRON CORPORATION",
+      "cusip": "166764100",
+      "shares": 84375856,
+      "value_usd": 13986141890,
+      "pct_of_portfolio": 4.67,
+      "change_pct": null
+    },
+    {
+      "ticker": "OXY",
+      "company": "OCCIDENTAL PETE CORP",
+      "cusip": "674599105",
+      "shares": 264941431,
+      "value_usd": 12868205304,
+      "pct_of_portfolio": 4.3,
+      "change_pct": null
+    },
+    {
+      "ticker": "",
+      "company": "CHUBB LIMITED",
+      "cusip": "H1467J104",
+      "shares": 34249183,
+      "value_usd": 11670066615,
+      "pct_of_portfolio": 3.9,
+      "change_pct": null
+    },
+    {
+      "ticker": "MCO",
+      "company": "MOODYS CORP",
+      "cusip": "615369105",
+      "shares": 24669778,
+      "value_usd": 11173435852,
+      "pct_of_portfolio": 3.73,
+      "change_pct": null
+    },
+    {
+      "ticker": "GOOG",
+      "company": "ALPHABET INC",
+      "cusip": "02079K107",
+      "shares": 27188433,
+      "value_usd": 9606489032,
+      "pct_of_portfolio": 3.21,
+      "change_pct": null
+    },
+    {
+      "ticker": "KHC",
+      "company": "KRAFT HEINZ CO",
+      "cusip": "500754106",
+      "shares": 325634818,
+      "value_usd": 7691494401,
+      "pct_of_portfolio": 2.57,
+      "change_pct": null
+    },
+    {
+      "ticker": "DVA",
+      "company": "DAVITA INC",
+      "cusip": "23918K108",
+      "shares": 28880209,
+      "value_usd": 6425268898,
+      "pct_of_portfolio": 2.15,
+      "change_pct": null
+    },
+    {
+      "ticker": "DAL",
+      "company": "DELTA AIR LINES INC",
+      "cusip": "247361702",
+      "shares": 57320000,
+      "value_usd": 5368591200,
+      "pct_of_portfolio": 1.79,
+      "change_pct": null
+    },
+    {
+      "ticker": "SIRI",
+      "company": "SIRIUSXM HOLDINGS INC",
+      "cusip": "829933100",
+      "shares": 124807117,
+      "value_usd": 3686802237,
+      "pct_of_portfolio": 1.23,
+      "change_pct": null
+    },
+    {
+      "ticker": "VRSN",
+      "company": "VERISIGN INC",
+      "cusip": "92343E102",
+      "shares": 8989880,
+      "value_usd": 2261494212,
+      "pct_of_portfolio": 0.76,
+      "change_pct": null
+    },
+    {
+      "ticker": "KR",
+      "company": "KROGER CO",
+      "cusip": "501044101",
+      "shares": 39000000,
+      "value_usd": 2165670000,
+      "pct_of_portfolio": 0.72,
+      "change_pct": null
+    },
+    {
+      "ticker": "ALLY",
+      "company": "ALLY FINL INC",
+      "cusip": "02005N100",
+      "shares": 27000000,
+      "value_usd": 1240650000,
+      "pct_of_portfolio": 0.41,
+      "change_pct": null
+    },
+    {
+      "ticker": "LEN",
+      "company": "LENNAR CORP",
+      "cusip": "526057104",
+      "shares": 13111741,
+      "value_usd": 1186481443,
+      "pct_of_portfolio": 0.4,
+      "change_pct": null
+    },
+    {
+      "ticker": "LLYVK",
+      "company": "LIBERTY LIVE HOLDINGS INC",
+      "cusip": "530909308",
+      "shares": 10587143,
+      "value_usd": 1118425787,
+      "pct_of_portfolio": 0.37,
+      "change_pct": null
+    },
+    {
+      "ticker": "NYT",
+      "company": "NEW YORK TIMES CO MTN BE",
+      "cusip": "650111107",
+      "shares": 15700000,
+      "value_usd": 1098686000,
+      "pct_of_portfolio": 0.37,
+      "change_pct": null
+    },
+    {
+      "ticker": "COF",
+      "company": "CAPITAL ONE FINL CORP",
+      "cusip": "14040H105",
+      "shares": 3000000,
+      "value_usd": 601860000,
+      "pct_of_portfolio": 0.2,
+      "change_pct": null
+    },
+    {
+      "ticker": "LLYVA",
+      "company": "LIBERTY LIVE HOLDINGS INC",
+      "cusip": "530909100",
+      "shares": 4986588,
+      "value_usd": 504941901,
+      "pct_of_portfolio": 0.17,
+      "change_pct": null
+    },
+    {
+      "ticker": "LPX",
+      "company": "LOUISIANA PAC CORP",
+      "cusip": "546347105",
+      "shares": 5664793,
+      "value_usd": 445592617,
+      "pct_of_portfolio": 0.15,
+      "change_pct": null
+    },
+    {
+      "ticker": "NUE",
+      "company": "NUCOR CORP",
+      "cusip": "670346105",
+      "shares": 1857752,
+      "value_usd": 413814258,
+      "pct_of_portfolio": 0.14,
+      "change_pct": null
+    },
+    {
+      "ticker": "M",
+      "company": "MACYS INC",
+      "cusip": "55616P104",
+      "shares": 7347426,
+      "value_usd": 173031882,
+      "pct_of_portfolio": 0.06,
+      "change_pct": null
+    },
+    {
+      "ticker": "NVR",
+      "company": "NVR INC",
+      "cusip": "62944T105",
+      "shares": 11112,
+      "value_usd": 75710501,
+      "pct_of_portfolio": 0.03,
+      "change_pct": null
+    },
+    {
+      "ticker": "LEN/B",
+      "company": "LENNAR CORP",
+      "cusip": "526057302",
+      "shares": 298117,
+      "value_usd": 26445959,
+      "pct_of_portfolio": 0.01,
+      "change_pct": null
+    },
+    {
+      "ticker": "JEF",
+      "company": "JEFFERIES FINANCIAL GROUP IN",
+      "cusip": "47233W109",
+      "shares": 433558,
+      "value_usd": 21669229,
+      "pct_of_portfolio": 0.01,
+      "change_pct": null
+    },
+    {
+      "ticker": "DHI",
+      "company": "D R HORTON INC",
+      "cusip": "23331A109",
+      "shares": 3564,
+      "value_usd": 580504,
+      "pct_of_portfolio": 0.0,
+      "change_pct": null
+    }
+  ],
+  "accession_number": "0001193125-26-352200"
+}
